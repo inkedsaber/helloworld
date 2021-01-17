@@ -27,24 +27,24 @@ use File::Find;
 
 my $lib = '/var/lib/koha/kohadev/plugins'; # Could be changed to $Bin/..
 
-unshift( @INC, $lib );
-unshift( @INC, '/kohadevbox/koha/' );
-unshift( @INC, '/kohadevbox/koha/misc/translator/' );
-unshift( @INC, '/kohadevbox/koha/t/lib/' );
+# unshift( @INC, $lib );
+# unshift( @INC, '/kohadevbox/koha/' );
+# unshift( @INC, '/kohadevbox/koha/misc/translator/' );
+# unshift( @INC, '/kohadevbox/koha/t/lib/' );
 
-find(
-    {
-        bydepth  => 1,
-        no_chdir => 1,
-        wanted   => sub {
-            my $m = $_;
-            return unless $m =~ s/[.]pm$//;
-            $m =~ s{^.*/Koha/}{Koha/};
-            $m =~ s{/}{::}g;
-            use_ok($m) || BAIL_OUT("***** PROBLEMS LOADING FILE '$m'");
-        },
-    },
-    $lib
-);
+# find(
+#     {
+#         bydepth  => 1,
+#         no_chdir => 1,
+#         wanted   => sub {
+#             my $m = $_;
+#             return unless $m =~ s/[.]pm$//;
+#             $m =~ s{^.*/Koha/}{Koha/};
+#             $m =~ s{/}{::}g;
+#             use_ok($m) || BAIL_OUT("***** PROBLEMS LOADING FILE '$m'");
+#         },
+#     },
+#     $lib
+# );
 
 done_testing();
